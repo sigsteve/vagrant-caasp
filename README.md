@@ -16,14 +16,14 @@ This project is a work in progress and will be cleaned up after some testing and
 * DNS works on your system hosting the virtual machines (if getent hosts \`hostname -s\` hangs, you will encounter errors)
 * You enjoy troubleshooting :P
 
-# INSTALLATION
+# INSTALLATION (As root)
 ```sh
 sysctl -w net.ipv6.conf.all.disable_ipv6=1 # rubygems.org has had issues pulling via IPv6
 cd vagrant-caasp
 ./libvirt_setup/openSUSE_vagrant_setup.sh
 ```
 
-# NETWORK SETUP
+# NETWORK SETUP (As root)
 ```sh
 # Fresh vagrant-libvirt setup
 virsh net-create ./libvirt_setup/vagrant-libvirt.xml
@@ -31,7 +31,7 @@ virsh net-create ./libvirt_setup/vagrant-libvirt.xml
 ./libvirt_setup/add_hosts_to_net.sh
 ```
 
-# ADD BOX
+# ADD BOX (As root)
 ```sh
 vagrant box add sle15sp1 /path/to/sle15sp1.box
 # NOTE: Box will be in OBS once some kiwi gets pending fixes
@@ -47,6 +47,8 @@ su - someuser
 vagrant plugin install vagrant-libvirt
 # ssh-keygen if you don't have one already
 ssh-copy-id root@localhost
+# Add any boxes (if you have boxes installed as other users, you'll need to add them here)
+vagrant box add [boxname] /path/to/boxes
 ```
 
 # USAGE
