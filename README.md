@@ -19,6 +19,7 @@ This project is a work in progress and will be cleaned up after some testing and
 # INSTALLATION (As root)
 ```sh
 sysctl -w net.ipv6.conf.all.disable_ipv6=1 # rubygems.org has had issues pulling via IPv6
+git clone https://github.com/sigsteve/vagrant-caasp
 cd vagrant-caasp
 ./libvirt_setup/openSUSE_vagrant_setup.sh
 ```
