@@ -7,6 +7,7 @@ This project is a work in progress and will be cleaned up after some testing and
 * (1-3) Masters
 * (1-5) Workers
 * (1) Storage node setup with an NFS export for the nfs-client storage provisioner
+* (1) Kubernetes Dashboard deployment
 
 # ASSUMPTIONS
 * You're running OpenSUSE Leap 15+
@@ -84,6 +85,8 @@ cd /vagrant/deploy
 # wait for tiller to come up... Can take a few minutes.
 # add NFS storage class (via helm)
 ./06.add_k8s_nfs-sc.sh
+# add Kubernetes Dashboard
+./07.add_dashboard.sh
 ```
 # INSTALLING CAASP (all at once)
 ```sh
