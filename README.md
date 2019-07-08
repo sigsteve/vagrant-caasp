@@ -36,7 +36,7 @@ virsh net-create ./libvirt_setup/vagrant-libvirt.xml
 # ADD BOX (As root)
 ```sh
 vagrant box add sle15sp1 /path/to/sle15sp1.box
-# NOTE: Box will be in OBS once some kiwi gets pending fixes
+# NOTE: Box will be in OBS once kiwi gets pending fixes
 ```
 
 # OPTIONAL -- running as a user other than root
@@ -71,7 +71,7 @@ vagrant ssh caasp4-master-1
 sudo su - sles
 cd /vagrant/deploy
 # source this
-. ./00.prep_environment
+source ./00.prep_environment
 # skuba init
 ./01.init_cluster.sh
 # skuba bootstrap (setup caasp4-master-1)
