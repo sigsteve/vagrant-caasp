@@ -54,6 +54,7 @@ vagrant box add [boxname] /path/to/boxes
 ```
 
 # USAGE
+Create a copy of caasp_env.conf.template and name it caasp_env.conf and copy Vagrantfile.template and name it Vagrantfile
 Examine the caasp_env.conf and Vagrantfile to validate the number of nodes and memory settings
 
 ```sh

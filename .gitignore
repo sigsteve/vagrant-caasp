@@ -2,3 +2,5 @@
 *.sw?
 *.box
 cluster
+caasp_env.conf.template
+Vagrantfile.template
