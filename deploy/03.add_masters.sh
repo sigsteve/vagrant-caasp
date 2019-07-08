@@ -4,9 +4,9 @@
 cd /vagrant/cluster/caasp4-cluster
 echo "Adding additional masters..."
 set -x
-skuba node join --role master --user sles --sudo --target caasp4-master-2 caasp4-master-2
-skuba node join --role master --user sles --sudo --target caasp4-master-3 caasp4-master-3
-
+for NUM in $(seq 2 $NMASTERS); do
+    skuba node join --role master --user sles --sudo --target caasp4-master-${NUM} caasp4-master-${NUM}
+done
 skuba cluster status
 kubectl get nodes -o wide
 set +x
