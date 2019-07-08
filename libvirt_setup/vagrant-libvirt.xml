@@ -1,6 +1,5 @@
 <network ipv6='yes'>
   <name>vagrant-libvirt</name>
-  <uuid>4956b3c4-1fa2-4912-960f-ac197ed6b905</uuid>
   <forward mode='nat'>
     <nat>
       <port start='1024' end='65535'/>
