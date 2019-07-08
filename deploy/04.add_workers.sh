@@ -1,12 +1,11 @@
 #!/bin/bash
 cd /vagrant/cluster/caasp4-cluster
+source /vagrant/caasp_env.conf
 echo "Adding workers..."
 set -x
-skuba node join --role worker --user sles --sudo --target caasp4-worker-1 caasp4-worker-1
-skuba node join --role worker --user sles --sudo --target caasp4-worker-2 caasp4-worker-2
-skuba node join --role worker --user sles --sudo --target caasp4-worker-3 caasp4-worker-3
-skuba node join --role worker --user sles --sudo --target caasp4-worker-4 caasp4-worker-4
-skuba node join --role worker --user sles --sudo --target caasp4-worker-5 caasp4-worker-5
+for NUM in $(seq 1 $NWORKERS); do
+    skuba node join --role worker --user sles --sudo --target caasp4-worker-${NUM} caasp4-worker-${NUM}
+done
 
 skuba cluster status
 kubectl get nodes -o wide
