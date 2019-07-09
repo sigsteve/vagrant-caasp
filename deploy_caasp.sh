@@ -1,4 +1,5 @@
-. caasp_env.conf
+#!/bin/bash
+source caasp_env.conf
 
 # Check memory configuration with host
 MASTERMEM=$(sed -n '1,/caasp4-master-/d;/end/,$d;s/lv\.memory = "\([0-9]*\).*/\1/p' Vagrantfile)
