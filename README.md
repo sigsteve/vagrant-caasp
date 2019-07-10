@@ -32,6 +32,8 @@ cd vagrant-caasp
 virsh net-create ./libvirt_setup/vagrant-libvirt.xml
 # _or_ if you already have the vagrant-libvirt network
 ./libvirt_setup/add_hosts_to_net.sh
+# Update host firewall (if applicable)
+./libvirt_setup/update_firewall.sh
 ```
 
 # ADD BOX (As root)
