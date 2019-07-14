@@ -28,7 +28,6 @@ cd vagrant-caasp
 # NETWORK SETUP (As root)
 ```sh
 # Fresh vagrant-libvirt setup
-# NOTE: this assumes device virbr1 is available - update file if needed
 virsh net-create ./libvirt_setup/vagrant-libvirt.xml
 # _or_ if you already have the vagrant-libvirt network
 ./libvirt_setup/add_hosts_to_net.sh
