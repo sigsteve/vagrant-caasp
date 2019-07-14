@@ -67,6 +67,18 @@ cd vagrant-caasp
 # Do not run vagrant up, unless you know what you're doing and want the result
 ```
 
+Once you have a CaaSP cluster provisioned you can start and stop that cluster by using the `cluster.sh` script
+```
+Usage cluster.sh [options..] [command]
+-v, --verbose       Make the operation more talkative
+-h,-?, --help       Show help and exit
+
+start               start a previosly provisioned cluster
+stop                stop a running cluster
+
+dashboardInfo       get Dashboard IP, PORT and Token
+```
+
 # INSTALLING CAASP (one step at a time)
 ```sh
 vagrant ssh caasp4-master-1
