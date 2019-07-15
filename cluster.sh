@@ -11,6 +11,7 @@ start               start a previosly provisioned cluster
 stop                stop a running cluster
 
 dashboardInfo       get Dashboard IP, PORT and Token
+monitoringInfo      get URLs and credentials for monitoring stack
 EOF
 }
 
@@ -133,6 +134,34 @@ function get_dashboard_credentials {
 
 }
 
+function get_monitoring_credentials {
+    local CAASP_DOMAIN="$(sed -n 's/^\s*domain\s*= "\(.*\)".*$/\1/p' Vagrantfile)"
+    cat << EOF
+You need to add the following to your /etc/hosts file:
+
+#vagrant-caasp4
+192.168.121.111     grafana.${CAASP_DOMAIN} prometheus.${CAASP_DOMAIN} prometheus-alert.${CAASP_DOMAIN}
+
+
+Then point your browser to the web interfaces
+
+Grafana:
+url: https://grafana.${CAASP_DOMAIN}
+user: admin
+pass: $(vagrant ssh caasp4-master-1 -c 'sudo -H -u sles kubectl get secret --namespace monitoring grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo' 2>/dev/null)
+
+Prometheus:
+url: https://prometheus.${CAASP_DOMAIN}
+user: admin
+pass: linux
+
+AlertManager:
+url: https://prometheus-alertmanager.${CAASP_DOMAIN}
+user: admin
+pass: linux
+EOF
+}
+
 
 if [[ $# -ne 1 ]]; then
     printf "This tool takes one argument, no more, no less!\n" >&2
@@ -148,6 +177,9 @@ case $1 in
         ;;
     dashboardInfo)
         get_dashboard_credentials
+        ;;
+    monitoringInfo)
+        get_monitoring_credentials
         ;;
     ?*)
         printf "'$1' is not a valid command\n" >&2
