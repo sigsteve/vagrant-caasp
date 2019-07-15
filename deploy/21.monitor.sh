@@ -8,7 +8,7 @@ printf "Creating monitoring namespace\n"
 kubectl create namespace monitoring
 
 # copy the storage secret from default namespace to monitoring namespace
-printf "Copy storage seacret from default namespace to monitoring namespace\n"
+printf "Copy storage secret from default namespace to monitoring namespace\n"
 kubectl get secret -o json $(kubectl get secret | awk '{print $1}' | grep nfs-provisioner) | \
   sed 's/"namespace": "default"/"namespace": "monitoring"/' | kubectl create -f -
 
