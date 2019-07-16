@@ -77,6 +77,7 @@ start               start a previosly provisioned cluster
 stop                stop a running cluster
 
 dashboardInfo       get Dashboard IP, PORT and Token
+monitoringInfo      get URLs and credentials for monitoring stack
 ```
 
 # INSTALLING CAASP (one step at a time)
