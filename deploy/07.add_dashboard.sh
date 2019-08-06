@@ -35,7 +35,8 @@ ST=$(kubectl -n kube-system get serviceaccounts admin-user -o jsonpath="{.secret
 SECRET=$(kubectl -n kube-system get secret ${ST} -o jsonpath="{.data.token}"|base64 -d)
 export NODE_PORT=$(kubectl get -o jsonpath="{.spec.ports[0].nodePort}" services kubernetes-dashboard -n kube-system)
 export NODE_IP=$(kubectl get nodes -o jsonpath="{.items[0].status.addresses[0].address}" -n kube-system)
+echo "    token: $SECRET" >> ~/.kube/config
 echo "Access your dashboard at: https://$NODE_IP:$NODE_PORT/"
 echo "Your login token is: ${SECRET}"
-
+echo "Or use ~/.kube/config to authenticate with kubeconfig"
 
