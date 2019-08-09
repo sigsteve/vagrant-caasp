@@ -16,7 +16,7 @@ Vagrant.configure("2") do |config|
             sle.vm.provider :libvirt do |lv|
                 lv.management_network_mac = "52:50:05:AA:01:0#{i}"
                 #lv.storage :file, :size => '20G'
-                lv.memory = "8192"
+                lv.memory = "2048"
                 lv.cpus   = 2 
             end 
         end
@@ -32,7 +32,7 @@ Vagrant.configure("2") do |config|
             sle.vm.provider :libvirt do |lv|
                 lv.management_network_mac = "52:50:05:AA:02:0#{i}"
                 #lv.storage :file, :size => '20G'
-                lv.memory = "8192"
+                lv.memory = "2048"
                 lv.cpus   = 2
             end
         end
