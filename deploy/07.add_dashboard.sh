@@ -29,6 +29,8 @@ EOF
 
 kubectl apply -f admin-user-crb.yaml
 
+rm -f dashboard-admin.yaml admin-user-crb.yaml 2>/dev/null
+
 helm status kubernetes-dashboard
 
 ST=$(kubectl -n kube-system get serviceaccounts admin-user -o jsonpath="{.secrets[0].name}")
