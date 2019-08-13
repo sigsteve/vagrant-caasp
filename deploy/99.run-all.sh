@@ -12,6 +12,7 @@ echo "Waiting for tiller to become available. This can take a couple of minutes.
 sleep 120
 ./06.add_k8s_nfs-sc.sh
 ./07.add_dashboard.sh
+./08.add_metallb.sh
 ./98.status.sh
 ST=$(kubectl -n kube-system get serviceaccounts admin-user -o jsonpath="{.secrets[0].name}")
 SECRET=$(kubectl -n kube-system get secret ${ST} -o jsonpath="{.data.token}"|base64 -d)
