@@ -146,7 +146,7 @@ data:
           "tableColumn": "",
           "targets": [
             {
-              "expr": "count(kube_node_info{node=\"$masters\"}) % sum(kube_node_status_condition{condition=\"Ready\", node=\"$masters\", status=\"true\"})",
+              "expr": "count(kube_node_info{node=\"$masters\"}) % sum(kube_node_status_condition{condition=\"Ready\", node=~\"$masters\", status=\"true\"})",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
