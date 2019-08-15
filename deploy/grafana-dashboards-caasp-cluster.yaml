@@ -233,7 +233,7 @@ data:
           "tableColumn": "",
           "targets": [
             {
-              "expr": "count(kube_node_info{node!=\"$masters\"}) % sum(kube_node_status_condition{condition=\"Ready\", node!=\"$masters\", status=\"true\"})",
+              "expr": "count(kube_node_info{node!~"$masters\"}) % sum(kube_node_status_condition{condition=\"Ready\", node!~"$masters\", status=\"true\"})",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -399,7 +399,7 @@ data:
           "tableColumn": "",
           "targets": [
             {
-              "expr": "sum(kube_node_status_allocatable_memory_bytes{node!=\"$masters\"})",
+              "expr": "sum(kube_node_status_allocatable_memory_bytes{node!~"$masters\"})",
               "format": "time_series",
               "intervalFactor": 1,
               "refId": "A"
@@ -560,7 +560,7 @@ data:
           "tableColumn": "",
           "targets": [
             {
-              "expr": "sum(kube_node_status_allocatable_cpu_cores{node!=\"$masters\"})",
+              "expr": "sum(kube_node_status_allocatable_cpu_cores{node!~"$masters\"})",
               "format": "time_series",
               "intervalFactor": 1,
               "refId": "A"
@@ -720,7 +720,7 @@ data:
           "tableColumn": "",
           "targets": [
             {
-              "expr": "sum(kube_node_status_allocatable_pods{node!=\"$masters\"})",
+              "expr": "sum(kube_node_status_allocatable_pods{node!~"$masters\"})",
               "format": "time_series",
               "intervalFactor": 1,
               "refId": "A"
@@ -883,7 +883,7 @@ data:
           "tableColumn": "",
           "targets": [
             {
-              "expr": "count(kube_node_info{node!=\"$masters\"})",
+              "expr": "count(kube_node_info{node!~"$masters\"})",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -965,7 +965,7 @@ data:
           "tableColumn": "",
           "targets": [
             {
-              "expr": "sum(container_memory_working_set_bytes{namespace!=\"\"}) / sum(kube_node_status_allocatable_memory_bytes{node!=\"$masters\"}) * 100",
+              "expr": "sum(container_memory_working_set_bytes{namespace!=\"\"}) / sum(kube_node_status_allocatable_memory_bytes{node!~"$masters\"}) * 100",
               "format": "time_series",
               "hide": false,
               "instant": false,
@@ -1048,7 +1048,7 @@ data:
           "tableColumn": "",
           "targets": [
             {
-              "expr": "(sum(irate(container_cpu_usage_seconds_total{namespace!=\"\"}[5m])) / sum(kube_node_status_allocatable_cpu_cores{node!=\"$masters\"})) * 100",
+              "expr": "(sum(irate(container_cpu_usage_seconds_total{namespace!=\"\"}[5m])) / sum(kube_node_status_allocatable_cpu_cores{node!~"$masters\"})) * 100",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -1130,7 +1130,7 @@ data:
           "tableColumn": "",
           "targets": [
             {
-              "expr": "sum(kube_pod_info{namespace!=\"\"}) / sum(kube_node_status_allocatable_pods{node!=\"$masters\"}) * 100",
+              "expr": "sum(kube_pod_info{namespace!=\"\"}) / sum(kube_node_status_allocatable_pods{node!~"$masters\"}) * 100",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -1190,7 +1190,7 @@ data:
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(kube_node_status_condition{condition=\"DiskPressure\", node=\"$masters\", status=\"true\"}) by (condition)",
+              "expr": "sum(kube_node_status_condition{condition=\"DiskPressure\", node=~\"$masters\", status=\"true\"}) by (condition)",
               "format": "time_series",
               "instant": false,
               "intervalFactor": 1,
@@ -1198,7 +1198,7 @@ data:
               "refId": "A"
             },
             {
-              "expr": "sum(kube_node_status_condition{condition=\"MemoryPressure\", node=\"$masters\", status=\"true\"}) by (condition)",
+              "expr": "sum(kube_node_status_condition{condition=\"MemoryPressure\", node=~\"$masters\", status=\"true\"}) by (condition)",
               "format": "time_series",
               "instant": false,
               "intervalFactor": 1,
@@ -1206,7 +1206,7 @@ data:
               "refId": "B"
             },
             {
-              "expr": "sum(kube_node_status_condition{condition=\"OutOfDisk\", node=\"$masters\", status=\"true\"}) by (condition)",
+              "expr": "sum(kube_node_status_condition{condition=\"OutOfDisk\", node=~\"$masters\", status=\"true\"}) by (condition)",
               "format": "time_series",
               "instant": false,
               "intervalFactor": 1,
@@ -1214,7 +1214,7 @@ data:
               "refId": "C"
             },
             {
-              "expr": "sum(kube_node_status_condition{condition=\"Ready\", node=\"$masters\", status=\"true\"}) by (condition)",
+              "expr": "sum(kube_node_status_condition{condition=\"Ready\", node=~\"$masters\", status=\"true\"}) by (condition)",
               "format": "time_series",
               "instant": false,
               "intervalFactor": 1,
@@ -1303,7 +1303,7 @@ data:
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(kube_node_status_condition{condition=\"DiskPressure\", node!=\"$masters\", status=\"true\"}) by (condition)",
+              "expr": "sum(kube_node_status_condition{condition=\"DiskPressure\", node!~"$masters\", status=\"true\"}) by (condition)",
               "format": "time_series",
               "instant": false,
               "intervalFactor": 1,
@@ -1311,7 +1311,7 @@ data:
               "refId": "A"
             },
             {
-              "expr": "sum(kube_node_status_condition{condition=\"MemoryPressure\", node!=\"$masters\", status=\"true\"}) by (condition)",
+              "expr": "sum(kube_node_status_condition{condition=\"MemoryPressure\", node!~"$masters\", status=\"true\"}) by (condition)",
               "format": "time_series",
               "instant": false,
               "intervalFactor": 1,
@@ -1319,7 +1319,7 @@ data:
               "refId": "B"
             },
             {
-              "expr": "sum(kube_node_status_condition{condition=\"OutOfDisk\", node!=\"$masters\", status=\"true\"}) by (condition)",
+              "expr": "sum(kube_node_status_condition{condition=\"OutOfDisk\", node!~"$masters\", status=\"true\"}) by (condition)",
               "format": "time_series",
               "instant": false,
               "intervalFactor": 1,
@@ -1327,7 +1327,7 @@ data:
               "refId": "C"
             },
             {
-              "expr": "sum(kube_node_status_condition{condition=\"Ready\", node!=\"$masters\", status=\"true\"}) by (condition)",
+              "expr": "sum(kube_node_status_condition{condition=\"Ready\", node!~"$masters\", status=\"true\"}) by (condition)",
               "format": "time_series",
               "instant": false,
               "intervalFactor": 1,
