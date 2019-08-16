@@ -16,6 +16,7 @@ chmod 600 ~sles/.ssh/authorized_keys
 chown -R sles ~sles/.ssh
 # rm -f /etc/zypp/repos.d/*
 #sed -i 's/DHCLIENT_HOSTNAME_OPTION="AUTO"/DHCLIENT_HOSTNAME_OPTION=""/g' /etc/sysconfig/network/dhcp
-myip=$(ip a sh eth0|sed -n 's;.*inet \(.*\)/.*;\1;p')
+#myip=$(ip a sh eth0|sed -n 's;.*inet \(.*\)/.*;\1;p')
+myip=$(ip route get 1 | awk '{print $(NF-2);exit}')
 echo ${myip} $(hostname -f) $(hostname -s)
 
