@@ -24,10 +24,10 @@ default_bits = 4096
 prompt=no
 
 [req_distinguished_name]
-C = CZ
-ST = CZ
-L = Prague
-O = example
+C = US
+ST = Utah
+L = Provo
+O = SUSE Consulting
 OU = monitoring
 CN = ${CAASP_DOMAIN}
 emailAddress = admin@${CAASP_DOMAIN}
@@ -132,11 +132,11 @@ nodeExporter:
   hostPID: false
   podSecurityPolicy:
     enabled: true
-#    annotations:
-#      seccomp.security.alpha.kubernetes.io/allowedProfileNames: 'docker/default'
-#      apparmor.security.beta.kubernetes.io/allowedProfileNames: 'runtime/default'
-#      seccomp.security.alpha.kubernetes.io/defaultProfileName: 'docker/default'
-#      apparmor.security.beta.kubernetes.io/defaultProfileName: 'runtime/default'
+    annotations:
+      seccomp.security.alpha.kubernetes.io/allowedProfileNames: 'docker/default'
+      apparmor.security.beta.kubernetes.io/allowedProfileNames: 'runtime/default'
+      seccomp.security.alpha.kubernetes.io/defaultProfileName: 'docker/default'
+      apparmor.security.beta.kubernetes.io/defaultProfileName: 'runtime/default'
   tolerations:
     - key: node-role.kubernetes.io/master
       operator: Exists
