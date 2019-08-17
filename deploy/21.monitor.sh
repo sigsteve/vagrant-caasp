@@ -9,7 +9,7 @@ kubectl create namespace monitoring
 
 # copy the storage secret from default namespace to monitoring namespace
 printf "Copy storage secret from default namespace to monitoring namespace\n"
-kubectl get secret -o json $(kubectl get secret | awk '{print $1}' | grep nfs-provisioner) | \
+kubectl get secret -o json $(kubectl get secret | awk '{print $1}' | grep nfs-client-provisioner) | \
   sed 's/"namespace": "default"/"namespace": "monitoring"/' | kubectl create -f -
 
 # We will be using self signed certificates for prometheus and grafana, 
