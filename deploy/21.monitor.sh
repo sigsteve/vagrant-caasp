@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# TODO: 
-#  * Fix and set the correct AppArmor annotations for Node-Exporter
 
 CAASP_DOMAIN="$(sed -n 's/^\s*domain\s*= "\(.*\)".*$/\1/p' /vagrant/Vagrantfile)"
 printf "Creating monitoring namespace\n"
