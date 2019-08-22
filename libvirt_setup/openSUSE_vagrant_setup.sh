@@ -1,12 +1,15 @@
+#!/bin/bash
 # Taken from: github.com/openSUSE/vagrant-ceph
 
 set -ex
 
+#check if rpmdev-vercmp is available, if not install rpmdevtools
+type rpmdev-vercmp >/dev/null 2>&1 || { zypper install --no-confirm rpmdevtools; }
+
 # install vagrant and it dependencies, devel files to build vagrant plugins later
 # use new --allow-unsigned-rpm option if zypper supports it
-zypper_version=($(zypper -V))
-if [[ ${zypper_version[1]} < '1.14.4' ]]
-then
+rpmdev-vercmp zypper-1.14.4 $(rpm -qa zypper)
+if [[ $? -eq 11 ]]; then
     zypper --no-gpg-checks in -y https://releases.hashicorp.com/vagrant/2.2.5/vagrant_2.2.5_x86_64.rpm
 else
     zypper in -y --allow-unsigned-rpm https://releases.hashicorp.com/vagrant/2.2.5/vagrant_2.2.5_x86_64.rpm
