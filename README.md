@@ -7,7 +7,6 @@ This project is a work in progress and will be cleaned up after some testing and
 * (1-3) Masters
 * (1-5) Workers
 * (1) Storage node setup with an NFS export for the nfs-client storage provisioner
-* (1) MetalLB
 * (1) Kubernetes Dashboard deployment
 
 # ASSUMPTIONS
