@@ -2,7 +2,7 @@
 echo "Installing Kubernetes Dashboard..."
 helm install stable/kubernetes-dashboard --namespace kube-system --name kubernetes-dashboard --set service.type=NodePort
 
-cat > dashboard-admin.yaml <<EOF
+cat >/tmp/dashboard-admin.yaml <<EOF
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -10,9 +10,9 @@ metadata:
   namespace: kube-system
 EOF
 
-kubectl apply -f dashboard-admin.yaml
+kubectl apply -f /tmp/dashboard-admin.yaml
 
-cat > admin-user-crb.yaml <<EOF
+cat >/tmp/admin-user-crb.yaml <<EOF
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
@@ -27,9 +27,9 @@ subjects:
     namespace: kube-system
 EOF
 
-kubectl apply -f admin-user-crb.yaml
+kubectl apply -f /tmp/admin-user-crb.yaml
 
-rm -f dashboard-admin.yaml admin-user-crb.yaml 2>/dev/null
+rm -f /tmp/dashboard-admin.yaml /tmp/admin-user-crb.yaml 2>/dev/null
 
 helm status kubernetes-dashboard
 
