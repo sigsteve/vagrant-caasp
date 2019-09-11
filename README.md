@@ -10,7 +10,7 @@ This project is a work in progress and will be cleaned up after some testing and
 * (1) Kubernetes Dashboard deployment
 
 # ASSUMPTIONS
-* You're running OpenSUSE Leap 15+
+* You're running OpenSUSE Tumbleweed or Leap 15+
 * You have at least 8GB of RAM to spare
 * You have the ability to run VMs with KVM
 * You have an internet connection (images pull from internet)
@@ -37,8 +37,11 @@ virsh net-create ./libvirt_setup/vagrant-libvirt.xml
 
 # ADD BOX (As root)
 ```sh
-vagrant box add sle15sp1 /path/to/sle15sp1.box
-# NOTE: Box will be in OBS once kiwi gets pending fixes
+Find the latest box at http://download.suse.de/ibs/home:/sbecht:/vc-test:/SLE-15-SP1/images/
+vagrant box add sle15sp1 \
+    http://download.suse.de/ibs/home:/sbecht:/vc-test:/SLE-15-SP1/images/<box>
+_OR_
+wget/curl the box and vagrant box add sle15sp1 </path/to/box>
 ```
 
 # OPTIONAL -- running as a user other than root
@@ -102,6 +105,8 @@ source ./00.prep_environment
 ./06.add_k8s_nfs-sc.sh
 # add Kubernetes Dashboard
 ./07.add_dashboard.sh
+# add MetalLB
+./08.add_metallb.sh
 ```
 # INSTALLING CAASP (all at once)
 ```sh
