@@ -12,7 +12,6 @@ Vagrant.configure("2") do |config|
             sle.vm.provision "shell", inline: "hostnamectl set-hostname #{sle.vm.hostname}"
             #sle.vm.provision "shell", inline: "kubeadm config images pull"
             sle.vm.provision "shell", inline: "/vagrant/boxfiles/prep_box.sh"
-            sle.nfs.map_uid = Process.uid
             sle.vm.synced_folder ".", "/vagrant", disabled: false,
                 :mount_options => ['noatime,soft,nfsvers=3'],
                 linux__nfs_options: ['rw','no_subtree_check','no_root_squash','async']
