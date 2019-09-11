@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
             sle.vm.provision "shell", inline: "hostnamectl set-hostname #{sle.vm.hostname}"
             #sle.vm.provision "shell", inline: "kubeadm config images pull"
             sle.vm.provision "shell", inline: "/vagrant/boxfiles/prep_box.sh"
-            sle.vm.synced_folder ".", "/vagrant", disabled: false,
+            sle.vm.synced_folder ".", "/vagrant", disabled: false, type: "nfs",
                 :mount_options => ['noatime,soft,nfsvers=3'],
                 linux__nfs_options: ['rw','no_subtree_check','no_root_squash','async']
             sle.vm.provider :libvirt do |lv|
@@ -30,7 +30,7 @@ Vagrant.configure("2") do |config|
             sle.vm.hostname = "caasp4-worker-#{i}.#{domain}"
             sle.vm.provision "shell", inline: "hostnamectl set-hostname #{sle.vm.hostname}"
             sle.vm.provision "shell", inline: "/vagrant/boxfiles/prep_box.sh"
-            sle.vm.synced_folder ".", "/vagrant", disabled: false,
+            sle.vm.synced_folder ".", "/vagrant", disabled: false, type: "nfs",
                 :mount_options => ['noatime,soft,nfsvers=3'],
                 linux__nfs_options: ['rw','no_subtree_check','no_root_squash','async']
             sle.vm.provider :libvirt do |lv|
@@ -49,7 +49,7 @@ Vagrant.configure("2") do |config|
             sle.vm.provision "shell", inline: "hostnamectl set-hostname #{sle.vm.hostname}"
             sle.vm.provision "shell", inline: "/vagrant/boxfiles/prep_box.sh"
             sle.vm.provision "shell", inline: "/vagrant/boxfiles/setup_lb.sh"
-            sle.vm.synced_folder ".", "/vagrant", disabled: false 
+            sle.vm.synced_folder ".", "/vagrant", disabled: false,  type: "nfs"
             sle.vm.provider :libvirt do |lv|
                 lv.management_network_mac = "52:50:05:AA:03:0#{i}"
                 lv.memory = "512"
@@ -65,7 +65,7 @@ Vagrant.configure("2") do |config|
             sle.vm.provision "shell", inline: "hostnamectl set-hostname #{sle.vm.hostname}"
             sle.vm.provision "shell", inline: "/vagrant/boxfiles/prep_box.sh"
             sle.vm.provision "shell", inline: "/vagrant/boxfiles/setup_nfs_server.sh"
-            sle.vm.synced_folder ".", "/vagrant", disabled: false 
+            sle.vm.synced_folder ".", "/vagrant", disabled: false, type: "nfs"
             sle.vm.provider :libvirt do |lv|
                 lv.management_network_mac = "52:50:05:AA:04:0#{i}"
                 lv.memory = "512"
