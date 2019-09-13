@@ -19,7 +19,7 @@ Vagrant.configure("2") do |config|
                 lv.management_network_mac = "52:50:05:AA:01:0#{i}"
                 #lv.storage :file, :size => '20G'
                 lv.memory = "2048"
-                lv.cpus   = 2 
+                lv.cpus   = 4 
             end 
         end
     end 

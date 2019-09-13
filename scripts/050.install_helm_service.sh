@@ -18,8 +18,10 @@ EOF
 
 sudo chmod 664 /etc/systemd/system/helm-serve.service
 sudo systemctl daemon-reload
+sleep 1
 sudo systemctl start helm-serve
+sleep 1
 sudo systemctl status helm-serve
-
+sleep 2
 
 helm repo add local http://localhost:8879/charts

@@ -14,3 +14,4 @@ zypper ar http://download.suse.de/install/SLP/SLE-15-SP1-Module-Development-Tool
 zypper ar http://download.suse.de/install/SLP/SLE-15-SP1-Module-Basesystem-GM/x86_64/DVD1/ SLE15-SP1-BASE1
 zypper ar http://download.suse.de/install/SLP/SLE-15-SP1-Module-Basesystem-GM/x86_64/DVD2/ SLE15-SP1-BASE2
 zypper ar http://download.suse.de/install/SLP/SLE-15-SP1-Module-Basesystem-GM/x86_64/DVD3/ SLE15-SP1-BASE3
+zypper refresh
