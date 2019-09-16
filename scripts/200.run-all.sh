@@ -1,45 +1,46 @@
 #!/bin/bash
-STEPS=14
+STEPS=16
 
-echo "Step 1 of $STEPS"
+STEP=1
+
+function showstep {
+    echo "Step $STEP of $STEPS"
+    STEP=$STEP+1
+}
+
+
+showstep()
 sudo ./000.zypper_repos.sh
-echo "Step 2 of $STEPS"
+showstep()
 ./001.install_packages.sh
 
-echo "Step 3 of $STEPS"
+showstep()
 sudo ./050.install_helm_service.sh
-echo "Step 4 of $STEPS"
+showstep()
 sudo ./051.setup_openstack_client.sh
-
-echo "Step 5 of $STEPS"
+showstep()
 ./052.clone_upstream_helm_charts.sh
+showstep()
+./053.patch-03-ingress.sh
 
-echo "Step 6 of $STEPS"
+
+showstep()
 ./101.setup_kube_stuff.sh
-
-echo "Step 7 of $STEPS"
+showstep()
 ./102.deploy_ingress.sh
-
-echo "Step 8 of $STEPS"
+showstep()
 ./103.deploy_nfs.sh
-
-echo "Step 8 of $STEPS"
+showstep()
 ./104.deploy_mariadb.sh
-
-echo "Step 9 of $STEPS"
+showstep()
 ./105.deploy_rabbitMQ.sh
-
-echo "Step 10 of $STEPS"
+showstep()
 ./106.deploy_memcached.sh
-
-echo "Step 11 of $STEPS"
+showstep()
 ./107.deploy_keystone.sh
-
-echo "Step 12 of $STEPS"
+showstep()
 ./108.deploy_heat.sh
-
-echo "Step 13 of $STEPS"
+showstep()
 ./109.deploy_horizon.sh
-
-echo "Step 14 of $STEPS"
+showstep()
 ./110.deploy_glance.sh
