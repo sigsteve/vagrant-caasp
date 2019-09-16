@@ -3,4 +3,6 @@ set -xe
 
 cd ~sles/openstack-helm
 
-./tools/deployment/developer/nfs/130-cinder.sh
+echo "There is no cinder nfs yet"
+
+#./tools/deployment/developer/nfs/130-cinder.sh
