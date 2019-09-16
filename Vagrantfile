@@ -18,12 +18,12 @@ Vagrant.configure("2") do |config|
             sle.vm.provider :libvirt do |lv|
                 lv.management_network_mac = "52:50:05:AA:01:0#{i}"
                 #lv.storage :file, :size => '20G'
-                lv.memory = "2048"
-                lv.cpus   = 4 
-            end 
+                lv.memory = "8192"
+                lv.cpus   = 2
+            end
         end
-    end 
-  
+    end
+
     1.upto(*workercount) do |i|
         config.vm.define "caasp4-worker-#{i}" do |sle|
             sle.vm.box = "sle15sp1"
@@ -36,8 +36,8 @@ Vagrant.configure("2") do |config|
             sle.vm.provider :libvirt do |lv|
                 lv.management_network_mac = "52:50:05:AA:02:0#{i}"
                 #lv.storage :file, :size => '20G'
-                lv.memory = "2048"
-                lv.cpus   = 2
+                lv.memory = "16384"
+                lv.cpus   = 4
             end
         end
     end
@@ -52,7 +52,7 @@ Vagrant.configure("2") do |config|
             sle.vm.synced_folder ".", "/vagrant", disabled: false,  type: "nfs"
             sle.vm.provider :libvirt do |lv|
                 lv.management_network_mac = "52:50:05:AA:03:0#{i}"
-                lv.memory = "512"
+                lv.memory = "1024"
                 lv.cpus   = 1 
             end 
         end
@@ -68,7 +68,7 @@ Vagrant.configure("2") do |config|
             sle.vm.synced_folder ".", "/vagrant", disabled: false, type: "nfs"
             sle.vm.provider :libvirt do |lv|
                 lv.management_network_mac = "52:50:05:AA:04:0#{i}"
-                lv.memory = "512"
+                lv.memory = "1024"
                 lv.cpus   = 1 
             end 
         end
