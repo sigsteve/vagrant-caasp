@@ -1,7 +1,7 @@
 #!/bin/bash
 
-sudo -H mkdir -p /etc/openstack
-sudo -H chown -R $(id -un): /etc/openstack
+mkdir -p /etc/openstack
+chown -R $(id -un): /etc/openstack
 tee /etc/openstack/clouds.yaml << EOF
 clouds:
   openstack_helm:

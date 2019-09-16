@@ -5,11 +5,12 @@ cd ~sles
 if [ ! -d ~sles/openstack-helm-infra ]; then
   git clone https://opendev.org/openstack/openstack-helm-infra.git
 fi
-cd openstack-helm-infra
+cd ~sles/openstack-helm-infra
 make all
 
+cd ~sles
 if [ ! -d ~sles/openstack-helm ]; then
   git clone https://opendev.org/openstack/openstack-helm.git
 fi
-cd ../openstack-helm
+cd ~sles/openstack-helm
 make all

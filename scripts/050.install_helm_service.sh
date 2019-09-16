@@ -1,8 +1,10 @@
 #!/bin/bash
 
+# Sudo this script
+
 # Only run this after helm is installed 
-sudo touch /etc/systemd/system/helm-serve.service
-sudo cat >/etc/systemd/system/helm-serve.service <<EOF
+touch /etc/systemd/system/helm-serve.service
+cat >/etc/systemd/system/helm-serve.service <<EOF
 [Unit]
 Description=Helm Server
 After=network.target
@@ -16,12 +18,12 @@ ExecStart=/usr/bin/helm serve
 WantedBy=multi-user.target
 EOF
 
-sudo chmod 664 /etc/systemd/system/helm-serve.service
-sudo systemctl daemon-reload
+chmod 664 /etc/systemd/system/helm-serve.service
+systemctl daemon-reload
 sleep 1
-sudo systemctl start helm-serve
+systemctl start helm-serve
 sleep 1
-sudo systemctl status helm-serve
+systemctl status helm-serve
 sleep 2
 
-helm repo add local http://localhost:8879/charts
+sudo -u sles helm repo add local http://localhost:8879/charts
