@@ -60,7 +60,7 @@ function invalid_model {
 
 CAASP_CONFIG_MODEL="minimal"
 DO_MEMORY_CHECK=true
-FULL_DEPLOYMENT=true
+FULL_DEPLOYMENT=false
 PARAMS=""
 while (( "$#" )); do
   case "$1" in
@@ -154,7 +154,6 @@ for m in $(seq ${NMASTERS})
 do
     vagrant up caasp4-master-${m}
 done
-exit
 
 echo "Deploying $NWORKERS workers"
 for w in $(seq ${NWORKERS})
