@@ -1,6 +1,6 @@
 # vagrant-caasp -- BETA
 An attempt to automate SUSE CaaS Platform v4 deployments for testing
-This project is a work in progress and will be cleaned up after some testing and feedback
+This project is a work in progress and will be cleaned up after some testing and feedback.
 
 # What you get
 * (1-2) Load balancers
@@ -10,7 +10,7 @@ This project is a work in progress and will be cleaned up after some testing and
 * (1) Kubernetes Dashboard deployment
 
 # ASSUMPTIONS
-* You're running OpenSUSE Tumbleweed or Leap 15+
+* You're running openSUSE Tumbleweed or Leap 15+
 * You have at least 8GB of RAM to spare
 * You have the ability to run VMs with KVM
 * You have an internet connection (images pull from internet)
@@ -89,7 +89,7 @@ vagrant ssh caasp4-master-1
 sudo su - sles
 cd /vagrant/deploy
 # source this
-source ./00.prep_environment
+source ./00.prep_environment.sh
 # skuba init
 ./01.init_cluster.sh
 # skuba bootstrap (setup caasp4-master-1)
