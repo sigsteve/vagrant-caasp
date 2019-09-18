@@ -56,7 +56,7 @@ function start_cluster {
     done
     printf "\n"
 
-    printf "Staring master nodes\n"
+    printf "Starting master nodes\n"
     for NUM in $(seq 1 $NMASTERS); do
         vagrant reload caasp4-master-${NUM}
     done
@@ -64,7 +64,7 @@ function start_cluster {
     #Waiting for masters to become ready
     vagrant ssh caasp4-master-1 -c 'sudo -H -u sles bash -c "source /vagrant/utils.sh; wait_for_masters_ready"'
 
-    printf "Staring worker nodes\n"
+    printf "Starting worker nodes\n"
     for NUM in $(seq 1 $NWORKERS); do
         vagrant reload caasp4-worker-${NUM}
     done
