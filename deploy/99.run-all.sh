@@ -8,8 +8,13 @@ cd /vagrant/deploy
 ./03.add_masters.sh 
 ./04.add_workers.sh 
 ./05.setup_helm.sh
-echo "Waiting for tiller to become available. This can take a couple of minutes..."
-sleep 120
+printf "Waiting for tiller to become available. This can take a couple of minutes."
+while [[ $(kubectl --namespace kube-system get pods | egrep -c "tiller-deploy-.* 1/1     Running") -eq 0 ]]
+do
+    printf "."
+    sleep 5
+done
+printf "\n"
 ./06.add_k8s_nfs-sc.sh
 ./07.add_dashboard.sh
 ./08.add_metallb.sh
