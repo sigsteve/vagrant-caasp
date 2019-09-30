@@ -1,0 +1,76 @@
+---
+# This configuration file is used to describe different sizes
+# of deployments.
+#
+minimal:
+  nodes:
+    master:
+      cpus: 1
+      memory: 2048
+      storage: 20G
+    worker:
+      cpus: 1
+      memory: 2048
+      storage: 20G
+    loadbalancer:
+      cpus: 1
+      memory: 512
+      storage: 20G
+    storage:
+      cpus: 1
+      memory: 512
+      storage: 20G
+small:
+  nodes:
+    master:
+      cpus: 1
+      memory: 2048
+      storage: 20G
+    worker:
+      cpus: 2
+      memory: 2048
+      storage: 20G
+    loadbalancer:
+      cpus: 1
+      memory: 512
+      storage: 20G
+    storage:
+      cpus: 1
+      memory: 512
+      storage: 20G
+medium:
+  nodes:
+    master:
+      cpus: 2
+      memory: 4096
+      storage: 20G
+    worker:
+      cpus: 2
+      memory: 2048
+      storage: 20G
+    loadbalancer:
+      cpus: 2
+      memory: 1024
+      storage: 20G
+    storage:
+      cpus: 2
+      memory: 1024
+      storage: 20G
+large:
+  nodes:
+    master:
+      cpus: 4
+      memory: 8192
+      storage: 20G
+    worker:
+      cpus: 4
+      memory: 16384
+      storage: 80G
+    loadbalancer:
+      cpus: 2
+      memory: 2048
+      storage: 20G
+    storage:
+      cpus: 4
+      memory: 4096
+      storage: 100G

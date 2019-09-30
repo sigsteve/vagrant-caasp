@@ -1,3 +1,23 @@
+# -*- mode: ruby -*- # vi: set ft=ruby :
+
+require 'yaml'
+require 'pp'
+
+config_file = 'config.yml'
+config_yml = YAML.load_file(config_file)
+
+# CONFIGURATION='minimal'
+# CONFIGURATION='medium'
+# CONFIGURATION='large'
+#
+# Set CAASP_CONFIG_MODEL in your shell env
+# to specify which model to use from config.yml
+# When running deploy_caasp.sh, specify the model
+# with -m <model>
+#
+# ./deploy_caasp.sh --model large --full
+CONFIG_MODEL=ENV.has_key?('CAASP_CONFIG_MODEL') ? ENV["CAASP_CONFIG_MODEL"] : 'minimal'
+
 Vagrant.configure("2") do |config|
     domain          = "suselab.com"
     lbcount         = 2
@@ -18,8 +38,8 @@ Vagrant.configure("2") do |config|
             sle.vm.provider :libvirt do |lv|
                 lv.management_network_mac = "52:50:05:AA:01:0#{i}"
                 #lv.storage :file, :size => '20G'
-                lv.memory = "8192"
-                lv.cpus   = 2
+                lv.memory = config_yml[CONFIG_MODEL]['nodes']['master']['memory']
+                lv.cpus   = config_yml[CONFIG_MODEL]['nodes']['master']['cpus']
             end
         end
     end
@@ -36,8 +56,8 @@ Vagrant.configure("2") do |config|
             sle.vm.provider :libvirt do |lv|
                 lv.management_network_mac = "52:50:05:AA:02:0#{i}"
                 #lv.storage :file, :size => '20G'
-                lv.memory = "16384"
-                lv.cpus   = 4
+                lv.memory = config_yml[CONFIG_MODEL]['nodes']['worker']['memory']
+                lv.cpus   = config_yml[CONFIG_MODEL]['nodes']['worker']['cpus']
             end
         end
     end
@@ -52,11 +72,11 @@ Vagrant.configure("2") do |config|
             sle.vm.synced_folder ".", "/vagrant", disabled: false,  type: "nfs"
             sle.vm.provider :libvirt do |lv|
                 lv.management_network_mac = "52:50:05:AA:03:0#{i}"
-                lv.memory = "1024"
-                lv.cpus   = 1 
-            end 
+                lv.memory = config_yml[CONFIG_MODEL]['nodes']['loadbalancer']['memory']
+                lv.cpus   = config_yml[CONFIG_MODEL]['nodes']['loadbalancer']['cpus']
+            end
         end
-    end 
+    end
 
     1.upto(*storagecount) do |i|
         config.vm.define "caasp4-storage-#{i}" do |sle|
@@ -68,9 +88,9 @@ Vagrant.configure("2") do |config|
             sle.vm.synced_folder ".", "/vagrant", disabled: false, type: "nfs"
             sle.vm.provider :libvirt do |lv|
                 lv.management_network_mac = "52:50:05:AA:04:0#{i}"
-                lv.memory = "1024"
-                lv.cpus   = 1 
-            end 
+                lv.memory = config_yml[CONFIG_MODEL]['nodes']['storage']['memory']
+                lv.cpus   = config_yml[CONFIG_MODEL]['nodes']['storage']['cpus']
+            end
         end
-    end 
+    end
 end
