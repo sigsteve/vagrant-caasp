@@ -7,7 +7,7 @@ mkdir -p ~sles/.ssh
 
 if [ ! -d /vagrant/cluster ]; then
     mkdir /vagrant/cluster
-    chown -R sles /vagrant/cluster
+    chown -R sles:users /vagrant/cluster
 fi
 
 if [ ! -f /vagrant/cluster/caasp4-id ]; then
