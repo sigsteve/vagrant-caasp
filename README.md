@@ -59,12 +59,18 @@ vagrant box add [boxname] /path/to/boxes
 ```
 
 # USAGE
-Examine the caasp_env.conf and Vagrantfile to validate the number of nodes and memory settings
+Examine the config.yml to view the model to choose for the size of each VM
+The config.yml configures the amount of RAM and CPUs for each type of vm as 
+well as the number of vms for each type:
+master, workers, load balancers, storage
+
+The current model list is
+minimal, small, medium, large
 
 ```sh
 # TO START
 cd vagrant-caasp
-./deploy_caasp.sh < --full >
+./deploy_caasp.sh -m <model> < --full >
 # --full will attempt to bring the machines up and deploy the cluster, based on settings in caasp_env.conf
 # Please adjust your memory settings in the Vagrantfile for each machine type
 # Do not run vagrant up, unless you know what you're doing and want the result
@@ -72,6 +78,14 @@ cd vagrant-caasp
 
 Once you have a CaaSP cluster provisioned you can start and stop that cluster by using the `cluster.sh` script
 ```
+Usage deploy_caasp.sh [options..]
+-m, --model <model>  Which config.yml model to use for vm sizing
+                     Default: "minimal"
+-f, --full           attempt to bring the machines up and deploy the cluster
+-i, --ignore-memory  Don't prompt when over allocating memory
+-t, --test           Do a dry run, don't actually deploy the vms.
+-h,-?, --help        Show help
+
 Usage cluster.sh [options..] [command]
 -v, --verbose       Make the operation more talkative
 -h,-?, --help       Show help and exit
