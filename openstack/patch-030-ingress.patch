@@ -1,0 +1,19 @@
+diff --git a/tools/deployment/developer/common/030-ingress.sh b/tools/deployment/developer/common/030-ingress.sh
+index a92f94d5..59c61af8 100755
+--- a/tools/deployment/developer/common/030-ingress.sh
++++ b/tools/deployment/developer/common/030-ingress.sh
+@@ -31,6 +31,14 @@ deployment:
+   type: DaemonSet
+ network:
+   host_namespace: true
++  vip:
++    manage: true
++    # what type of vip manage mechanism will be used
++    # possible options: routed, keepalived
++    mode: routed
++    interface: ingress-vip
++    addr: 192.168.121.169/32
++  external_policy_local: true
+ EOF
+ helm upgrade --install ingress-kube-system ${HELM_CHART_ROOT_PATH}/ingress \
+   --namespace=kube-system \
