@@ -8,6 +8,7 @@ skuba cluster status
 set +x
 mkdir ~/.kube
 ln -sf /vagrant/cluster/caasp4-cluster/admin.conf ~/.kube/config
+chmod g+r /vagrant/cluster/caasp4-cluster/admin.conf
 
 set -x
 kubectl get nodes -o wide
