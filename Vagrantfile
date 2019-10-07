@@ -37,9 +37,14 @@ Vagrant.configure("2") do |config|
                 linux__nfs_options: ['rw','no_subtree_check','no_root_squash','async']
             sle.vm.provider :libvirt do |lv|
                 lv.management_network_mac = "52:50:05:AA:01:0#{i}"
-                #lv.storage :file, :size => '20G'
                 lv.memory = config_yml[CONFIG_MODEL]['nodes']['master']['memory']
                 lv.cpus   = config_yml[CONFIG_MODEL]['nodes']['master']['cpus']
+                extra_disks = config_yml[CONFIG_MODEL]['nodes']['master']['extra_disks']
+                if extra_disks > 0
+                    (1..extra_disks).each do |disk_num|
+                      lv.storage :file, :size => config_yml[CONFIG_MODEL]['nodes']['master']['disk_size']
+                    end
+                end
             end
         end
     end
@@ -55,7 +60,12 @@ Vagrant.configure("2") do |config|
                 linux__nfs_options: ['rw','no_subtree_check','no_root_squash','async']
             sle.vm.provider :libvirt do |lv|
                 lv.management_network_mac = "52:50:05:AA:02:0#{i}"
-                #lv.storage :file, :size => '20G'
+                extra_disks = config_yml[CONFIG_MODEL]['nodes']['worker']['extra_disks']
+                if extra_disks > 0
+                    (1..extra_disks).each do |disk_num|
+                      lv.storage :file, :size => config_yml[CONFIG_MODEL]['nodes']['worker']['disk_size']
+                    end
+                end
                 lv.memory = config_yml[CONFIG_MODEL]['nodes']['worker']['memory']
                 lv.cpus   = config_yml[CONFIG_MODEL]['nodes']['worker']['cpus']
             end
@@ -74,6 +84,12 @@ Vagrant.configure("2") do |config|
                 lv.management_network_mac = "52:50:05:AA:03:0#{i}"
                 lv.memory = config_yml[CONFIG_MODEL]['nodes']['loadbalancer']['memory']
                 lv.cpus   = config_yml[CONFIG_MODEL]['nodes']['loadbalancer']['cpus']
+                extra_disks = config_yml[CONFIG_MODEL]['nodes']['loadbalancer']['extra_disks']
+                if extra_disks > 0
+                    (1..extra_disks).each do |disk_num|
+                      lv.storage :file, :size => config_yml[CONFIG_MODEL]['nodes']['loadbalancer']['disk_size']
+                    end
+                end
             end
         end
     end
@@ -90,6 +106,12 @@ Vagrant.configure("2") do |config|
                 lv.management_network_mac = "52:50:05:AA:04:0#{i}"
                 lv.memory = config_yml[CONFIG_MODEL]['nodes']['storage']['memory']
                 lv.cpus   = config_yml[CONFIG_MODEL]['nodes']['storage']['cpus']
+                extra_disks = config_yml[CONFIG_MODEL]['nodes']['storage']['extra_disks']
+                if extra_disks > 0
+                    (1..extra_disks).each do |disk_num|
+                      lv.storage :file, :size => config_yml[CONFIG_MODEL]['nodes']['storage']['disk_size']
+                    end
+                end
             end
         end
     end
