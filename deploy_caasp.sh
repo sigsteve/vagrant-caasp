@@ -85,7 +85,7 @@ fi
 
 # This is so Vagrantfile can read the
 # selected model
-export $CAASP_CONFIG_MODEL
+export CAASP_CONFIG_MODEL
 
 # read in the config.yml and write out the caasp_env.conf
 source lib.sh
