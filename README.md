@@ -59,8 +59,8 @@ vagrant box add [boxname] /path/to/boxes
 ```
 
 # USAGE
-Examine the config.yml to view the model to choose for the size of each VM
-The config.yml configures the amount of RAM and CPUs for each type of vm as 
+Examine the config.yml to view the model to choose for the size of each VM.
+The config.yml configures the amount of RAM and CPUs for each type of vm as
 well as the number of vms for each type:
 master, workers, load balancers, storage
 
@@ -71,8 +71,8 @@ minimal, small, medium, large
 # TO START
 cd vagrant-caasp
 ./deploy_caasp.sh -m <model> < --full >
-# --full will attempt to bring the machines up and deploy the cluster, based on settings in caasp_env.conf
-# Please adjust your memory settings in the Vagrantfile for each machine type
+# --full will attempt to bring the machines up and deploy the cluster.
+# Please adjust your memory settings in the config.yml for each machine type.
 # Do not run vagrant up, unless you know what you're doing and want the result
 ```
 

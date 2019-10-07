@@ -87,7 +87,7 @@ fi
 # selected model
 export $CAASP_CONFIG_MODEL
 
-# read in the config.yml and write out the caasp_env.yml
+# read in the config.yml and write out the caasp_env.conf
 source lib.sh
 
 # Collect System Requirements
