@@ -14,10 +14,8 @@ EOF
 }
 
 
-#####################################################
-# IF you add new models, make sure to add them here
-#####################################################
-VALID_MODELS="minimal small medium large"
+# Get all models in the file
+VALID_MODELS=`egrep '^[a-zA-Z]' config.yml |tr ':' ' '|tr -d '\r\n' `
 
 function validate_model {
   local result=0
@@ -28,8 +26,8 @@ function validate_model {
 }
 
 function invalid_model {
-    echo "Invalid model option, must be one of '$VALID_MODELS'"
-    echo "Look in config.yml for information"
+    echo "Invalid model option, must be one of '$VALID_MODELS'."
+    echo "Update config.yml if needed."
     exit 1
 }
 
