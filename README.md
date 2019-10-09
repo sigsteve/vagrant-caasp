@@ -1,6 +1,8 @@
 # vagrant-caasp -- BETA
-An attempt to automate SUSE CaaS Platform v4 deployments for testing
+An automated deployment of SUSE CaaS Platform (Kubernetes) v4.0 for testing.
+
 This project is a work in progress and will be cleaned up after some testing and feedback.
+Feel free to open issues and/or submit PRs.
 
 # What you get
 * (1-2) Load balancers
@@ -8,6 +10,7 @@ This project is a work in progress and will be cleaned up after some testing and
 * (1-5) Workers
 * (1) Storage node setup with an NFS export for the nfs-client storage provisioner
 * (1) Kubernetes Dashboard deployment
+* (1) MetalLB instance
 
 # ASSUMPTIONS
 * You're running openSUSE Tumbleweed or Leap 15+
@@ -27,6 +30,7 @@ cd vagrant-caasp
 
 # NETWORK SETUP (As root)
 ```sh
+# Make sure ip forwarding is enabled for the proper interfaces
 # Fresh vagrant-libvirt setup
 virsh net-create ./libvirt_setup/vagrant-libvirt.xml
 # _or_ if you already have the vagrant-libvirt network
