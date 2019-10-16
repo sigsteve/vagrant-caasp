@@ -46,12 +46,12 @@ small:
     loadbalancer:
       count: 1
       cpus: 1
-      memory: 1024
+      memory: 512
       extra_disks: 0
     storage:
       count: 1
       cpus: 1
-      memory: 1024
+      memory: 512
       extra_disks: 0
 medium:
   nodes:
@@ -63,40 +63,60 @@ medium:
     worker:
       count: 3
       cpus: 4
-      memory: 16384
-      extra_disks: 0
+      memory: 4096
+      extra_disks: 3
     loadbalancer:
       count: 1
-      cpus: 2
-      memory: 4096
+      cpus: 1
+      memory: 512
       extra_disks: 0
     storage:
       count: 1
-      cpus: 2
-      memory: 4096
+      cpus: 1
+      memory: 512
       extra_disks: 0
 large:
   nodes:
     master:
       count: 3
-      cpus: 4
-      memory: 8192
-      extra_disks: 1
-      disk_size: 20G
+      cpus: 2
+      memory: 4096
+      extra_disks: 0
     worker:
       count: 5
-      cpus: 4
-      memory: 16384
-      extra_disks: 1
-      disk_size: 80G
-    loadbalancer:
-      count: 1
       cpus: 2
       memory: 8192
       extra_disks: 0
+    loadbalancer:
+      count: 1
+      cpus: 1
+      memory: 512
+      extra_disks: 0
     storage:
       count: 1
+      cpus: 1
+      memory: 512
+      extra_disks: 0
+large_rook:
+  nodes:
+    master:
+      count: 3
+      cpus: 2
+      memory: 4096
+      extra_disks: 0
+    worker:
+      count: 5
       cpus: 2
       memory: 8192
-      extra_disks: 1
-      disk_size: 100G
+      extra_disks: 5
+      disk_size: 20
+    loadbalancer:
+      count: 1
+      cpus: 1
+      memory: 512
+      extra_disks: 0
+    storage:
+      count: 1
+      cpus: 1
+      memory: 512
+      extra_disks: 0
