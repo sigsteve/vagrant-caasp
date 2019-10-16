@@ -11,6 +11,7 @@ Feel free to open issues and/or submit PRs.
 * (1) Storage node setup with an NFS export for the nfs-client storage provisioner
 * (1) Kubernetes Dashboard deployment
 * (1) MetalLB instance
+* (1) Optional Rook / Ceph / SES setup
 
 # ASSUMPTIONS
 * You're running openSUSE Tumbleweed or Leap 15+
@@ -133,6 +134,22 @@ sudo su - sles
 cd /vagrant/deploy
 ./99.run-all.sh
 ```
+# Rook + SES / Ceph
+```sh
+# For rook, you must deploy with a model that has a tag with _rook.
+# See config.yml large_rook for example.
+# This will handle all setup and configuration for you.
+# Currently the default storage class will remain NFS.
+#
+# To make SES your default storage class:
+/vagrant/rook/switch_default_sc_to_ses.sh
+# To see status:
+/vagrant/rook/rook_status.sh
+```
+# OPENSTACK
+
+# CAP
+
 # EXAMPLES
 * FULL DEPLOY
 [![asciicast](https://asciinema.org/a/xN9su72gEJpaoxCZ5a97qPVEP.svg)](https://asciinema.org/a/xN9su72gEJpaoxCZ5a97qPVEP)
