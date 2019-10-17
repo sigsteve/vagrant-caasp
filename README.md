@@ -152,7 +152,7 @@ cd /vagrant/deploy
 
 # EXAMPLES
 * FULL DEPLOY
-[![asciicast](https://asciinema.org/a/xN9su72gEJpaoxCZ5a97qPVEP.svg)](https://asciinema.org/a/xN9su72gEJpaoxCZ5a97qPVEP)
+[![asciicast](https://asciinema.org/a/pBBBZUKQINb3CwhaVwiTk0Gvx.svg)](https://asciinema.org/a/pBBBZUKQINb3CwhaVwiTk0Gvx)
 
 * INSTALL
 
