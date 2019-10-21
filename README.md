@@ -73,16 +73,12 @@ The current model list is
 minimal, small, medium, large
 
 ```sh
-# TO START
+# Initial deployment
 cd vagrant-caasp
 ./deploy_caasp.sh -m <model> < --full >
 # --full will attempt to bring the machines up and deploy the cluster.
 # Please adjust your memory settings in the config.yml for each machine type.
 # Do not run vagrant up, unless you know what you're doing and want the result
-```
-
-Once you have a CaaSP cluster provisioned you can start and stop that cluster by using the `cluster.sh` script
-```
 Usage deploy_caasp.sh [options..]
 -m, --model <model>  Which config.yml model to use for vm sizing
                      Default: "minimal"
@@ -91,6 +87,10 @@ Usage deploy_caasp.sh [options..]
 -t, --test           Do a dry run, don't actually deploy the vms.
 -h,-?, --help        Show help
 
+```
+
+Once you have a CaaSP cluster provisioned you can start and stop that cluster by using the `cluster.sh` script
+```sh
 Usage cluster.sh [options..] [command]
 -v, --verbose       Make the operation more talkative
 -h,-?, --help       Show help and exit
@@ -157,6 +157,9 @@ cd /vagrant/deploy
 * INSTALL
 
 * DESTROY
+```sh
+./destroy_caasp.sh
+```
 
 # NOTES
 
