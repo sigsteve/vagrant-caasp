@@ -1,0 +1,7 @@
+
+
+Welcome to your Vagrant-CaaSP Environment!
+To get started, become the user sles, by running:
+sudo su - sles
+
+
