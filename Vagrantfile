@@ -42,7 +42,7 @@ Vagrant.configure("2") do |config|
                 extra_disks = config_yml[CONFIG_MODEL]['nodes']['master']['extra_disks']
                 if extra_disks > 0
                     (1..extra_disks).each do |disk_num|
-                      lv.storage :file, :size => config_yml[CONFIG_MODEL]['nodes']['master']['disk_size']
+                      lv.storage :file, :size => config_yml[CONFIG_MODEL]['nodes']['master']['disk_size'] || '40G'
                     end
                 end
             end
@@ -63,7 +63,7 @@ Vagrant.configure("2") do |config|
                 extra_disks = config_yml[CONFIG_MODEL]['nodes']['worker']['extra_disks']
                 if extra_disks > 0
                     (1..extra_disks).each do |disk_num|
-                      lv.storage :file, :size => config_yml[CONFIG_MODEL]['nodes']['worker']['disk_size']
+                      lv.storage :file, :size => config_yml[CONFIG_MODEL]['nodes']['worker']['disk_size'] || '40G'
                     end
                 end
                 lv.memory = config_yml[CONFIG_MODEL]['nodes']['worker']['memory']
@@ -87,7 +87,7 @@ Vagrant.configure("2") do |config|
                 extra_disks = config_yml[CONFIG_MODEL]['nodes']['loadbalancer']['extra_disks']
                 if extra_disks > 0
                     (1..extra_disks).each do |disk_num|
-                      lv.storage :file, :size => config_yml[CONFIG_MODEL]['nodes']['loadbalancer']['disk_size']
+                      lv.storage :file, :size => config_yml[CONFIG_MODEL]['nodes']['loadbalancer']['disk_size'] || '40G'
                     end
                 end
             end
@@ -109,7 +109,7 @@ Vagrant.configure("2") do |config|
                 extra_disks = config_yml[CONFIG_MODEL]['nodes']['storage']['extra_disks']
                 if extra_disks > 0
                     (1..extra_disks).each do |disk_num|
-                      lv.storage :file, :size => config_yml[CONFIG_MODEL]['nodes']['storage']['disk_size']
+                      lv.storage :file, :size => config_yml[CONFIG_MODEL]['nodes']['storage']['disk_size'] || '40G'
                     end
                 end
             end
