@@ -17,7 +17,7 @@ Feel free to open issues and/or submit PRs.
 * You're running openSUSE Tumbleweed or Leap 15+
 * You have at least 8GB of RAM to spare
 * You have the ability to run VMs with KVM
-* You have an internet connection (images pull from internet)
+* You have an internet connection (images pull from internet, box comes from download.suse.de)
 * DNS works on your system hosting the virtual machines (if getent hosts \`hostname -s\` hangs, you will encounter errors)
 * You enjoy troubleshooting :P
 
@@ -26,6 +26,7 @@ Feel free to open issues and/or submit PRs.
 sysctl -w net.ipv6.conf.all.disable_ipv6=1 # rubygems.org has had issues pulling via IPv6
 git clone https://github.com/sigsteve/vagrant-caasp
 cd vagrant-caasp
+# Install dependent packages and configure vagrant-libvirt
 ./libvirt_setup/openSUSE_vagrant_setup.sh
 ```
 
@@ -34,7 +35,7 @@ cd vagrant-caasp
 # Make sure ip forwarding is enabled for the proper interfaces
 # Fresh vagrant-libvirt setup
 virsh net-create ./libvirt_setup/vagrant-libvirt.xml
-# _or_ if you already have the vagrant-libvirt network
+# _OR_ if you already have the vagrant-libvirt network
 ./libvirt_setup/add_hosts_to_net.sh
 # Update host firewall (if applicable)
 ./libvirt_setup/update_firewall.sh
@@ -42,17 +43,18 @@ virsh net-create ./libvirt_setup/vagrant-libvirt.xml
 
 # ADD BOX (As root)
 ```sh
-Find the latest box at http://download.suse.de/ibs/home:/sbecht:/vc-test:/SLE-15-SP1/images/
+# Find the latest box at http://download.suse.de/ibs/home:/sbecht:/vc-test:/SLE-15-SP1/images/
 vagrant box add sle15sp1 \
     http://download.suse.de/ibs/home:/sbecht:/vc-test:/SLE-15-SP1/images/<box>
-_OR_
-wget/curl the box and vagrant box add sle15sp1 </path/to/box>
+# _OR_
+# wget/curl the box and 'vagrant box add sle15sp1 </path/to/box>'
 ```
 
 # OPTIONAL -- running as a user other than root
 ```sh
-# Become root
+# Become root (su), then
 echo "someuser ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/someuser
+visudo -c -f /etc/sudoers.d/someuser
 # Add user to libvirt group
 usermod --append --groups libvirt someuser
 su - someuser
@@ -71,6 +73,8 @@ master, workers, load balancers, storage
 
 The current model list is
 minimal, small, medium, large
+
+The `deploy_caasp.sh` must be run as either `root` or `sles` user.
 
 ```sh
 # Initial deployment
@@ -103,6 +107,7 @@ monitoringInfo      get URLs and credentials for monitoring stack
 ```
 
 # INSTALLING CAASP (one step at a time)
+After running `deploy_caasp.sh -m <model>` without the --full option, do the following.
 ```sh
 vagrant ssh caasp4-master-1
 sudo su - sles
@@ -147,8 +152,10 @@ cd /vagrant/deploy
 /vagrant/rook/rook_status.sh
 ```
 # OPENSTACK
+(details to be documented)
 
 # CAP
+(details to be documented)
 
 # EXAMPLES
 * FULL DEPLOY
