@@ -4,12 +4,13 @@
 function printHelp {
 cat << EOF
 Usage ${0##*/} [options..]
--m, --model <model>  Which config.yml model to use for vm sizing
-                     Default: "minimal"
--f, --full           attempt to bring the machines up and deploy the cluster
--i, --ignore-memory  Don't prompt when over allocating memory
--t, --test           Do a dry run, don't actually deploy the vms.
--h,-?, --help        Show help
+-m, --model <model>     Which config.yml model to use for vm sizing
+                        Default: "minimal"
+-f, --full              attempt to bring the machines up and deploy the cluster
+-i, --ignore-memory     Don't prompt when over allocating memory
+-t, --test              Do a dry run, don't actually deploy the vms.
+-v, --verbosity <0-10>  Pass through verbosity level to skuba (default 0)
+-h,-?, --help           Show help
 EOF
 }
 
@@ -36,6 +37,7 @@ DO_MEMORY_CHECK=true
 FULL_DEPLOYMENT=false
 DO_DRY_RUN=false
 PARAMS=""
+VERBOSITY="0"
 while (( "$#" )); do
   case "$1" in
     -h|-\?|--help)
@@ -57,6 +59,17 @@ while (( "$#" )); do
     -t|--test)
       DO_DRY_RUN=true
       shift
+      ;;
+    -v|--verbosity)
+      VERBOSITY=$2
+      if [[ $VERBOSITY == -* || ! $VERBOSITY ]]; then
+          # next parameter is not the verbosity number, so just set to 1
+          VERBOSITY="1"
+          shift
+      else
+          VERBOSITY=$2
+          shift 2
+      fi
       ;;
     --) # end argument parsing
       shift
@@ -167,7 +180,7 @@ do
 done
 
 if [[ $FULL_DEPLOYMENT == true ]]; then
-    vagrant ssh caasp4-master-1 -c 'sudo su - sles -c /vagrant/deploy/99.run-all.sh'
+    vagrant ssh caasp4-master-1 -c 'sudo su - sles -c /vagrant/deploy/99.run-all.sh -v $VERBOSITY'
 fi
 
 echo "Happy CaaSPing!"
