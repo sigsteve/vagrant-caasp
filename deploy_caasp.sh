@@ -4,12 +4,13 @@
 function printHelp {
 cat << EOF
 Usage ${0##*/} [options..]
--m, --model <model>  Which config.yml model to use for vm sizing
-                     Default: "minimal"
--f, --full           attempt to bring the machines up and deploy the cluster
--i, --ignore-memory  Don't prompt when over allocating memory
--t, --test           Do a dry run, don't actually deploy the vms.
--h,-?, --help        Show help
+-m, --model <model>   Which config.yml model to use for vm sizing
+                      Default: "minimal"
+-f, --full            attempt to bring the machines up and deploy the cluster
+-i, --ignore-memory   Don't prompt when over allocating memory
+-t, --test            Do a dry run, don't actually deploy the vms
+-v, --verbose [uint8] Verbosity level to pass to skuba -v (default is 1)
+-h,-?, --help         Show help
 EOF
 }
 
@@ -57,6 +58,10 @@ while (( "$#" )); do
     -t|--test)
       DO_DRY_RUN=true
       shift
+      ;;
+    -v|--verbose)
+      SKUBA_VERBOSITY=$2
+      shift 2
       ;;
     --) # end argument parsing
       shift

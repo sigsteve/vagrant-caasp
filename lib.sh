@@ -50,4 +50,5 @@ NSTORAGE=$NSTORAGE
 
 # The config model chosen at deploy_caasp.sh time
 MODEL=$CAASP_CONFIG_MODEL
+SKUBA_VERBOSITY=${SKUBA_VERBOSITY}
 EOF
