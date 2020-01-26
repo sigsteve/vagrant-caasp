@@ -1,5 +1,5 @@
 # vagrant-caasp -- BETA
-An automated deployment of SUSE CaaS Platform (Kubernetes) v4.0 for testing.
+An automated deployment of SUSE CaaS Platform (Kubernetes) v4.1 for testing.
 
 This project is a work in progress and will be cleaned up after some testing and feedback.
 Feel free to open issues and/or submit PRs.
@@ -84,13 +84,13 @@ cd vagrant-caasp
 # Please adjust your memory settings in the config.yml for each machine type.
 # Do not run vagrant up, unless you know what you're doing and want the result
 Usage deploy_caasp.sh [options..]
--m, --model <model>  Which config.yml model to use for vm sizing
-                     Default: "minimal"
--f, --full           attempt to bring the machines up and deploy the cluster
--i, --ignore-memory  Don't prompt when over allocating memory
--t, --test           Do a dry run, don't actually deploy the vms.
--h,-?, --help        Show help
-
+-m, --model <model>   Which config.yml model to use for vm sizing
+                      Default: "minimal"
+-f, --full            attempt to bring the machines up and deploy the cluster
+-i, --ignore-memory   Don't prompt when over allocating memory
+-v, --verbose [uint8] Debug level to pass to skuba
+-t, --test            Do a dry run, don't actually deploy the vms
+-h,-?, --help         Show help
 ```
 
 Once you have a CaaSP cluster provisioned you can start and stop that cluster by using the `cluster.sh` script
