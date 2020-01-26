@@ -207,7 +207,7 @@ printf "  Adding basic authentication for Prometheus as kubernetes secret\n"
 echo 'admin:$apr1$lCPTFdzB$Iubp1DzRYBDFjpJK72FOA0' > /tmp/auth
 kubectl create secret generic -n monitoring prometheus-basic-auth --from-file=/tmp/auth
 printf "  Installing Prometheus\n"
-helm install --name prometheus stable/prometheus \
+helm install --name prometheus suse/prometheus \
   --namespace monitoring \
   --values /tmp/prometheus-config-values.yaml
 
@@ -256,7 +256,7 @@ EOF
 # first of we create the datasource to be used for grafana
 kubectl create -f /vagrant/deploy/grafana-datasources.yaml
 # deploy the Grafana 
-helm install --name grafana stable/grafana \
+helm install --name grafana suse/grafana \
   --namespace monitoring \
   --values /tmp/grafana-config-values.yaml
 # and a grafana dashboard as a ConfigMap
