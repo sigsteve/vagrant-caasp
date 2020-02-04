@@ -5,3 +5,4 @@ kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admi
 #helm init
 #kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
 helm init --service-account=tiller --wait
+helm repo add suse https://kubernetes-charts.suse.com
