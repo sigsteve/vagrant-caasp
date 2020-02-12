@@ -20,5 +20,5 @@ for NUM in $(seq 0 $(($NWORKERS-1)) ); do
     printf "      - 192.168.121.13${NUM}\n" >> /tmp/nginx-ingress-config-values.yaml
 done
 
-helm install --name nginx-ingress stable/nginx-ingress \
+helm install --name nginx-ingress suse/nginx-ingress \
     --values /tmp/nginx-ingress-config-values.yaml
