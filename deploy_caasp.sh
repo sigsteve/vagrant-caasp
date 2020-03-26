@@ -7,6 +7,7 @@ Usage ${0##*/} [options..]
 -m, --model <model>   Which config.yml model to use for vm sizing
                       Default: "minimal"
 -f, --full            attempt to bring the machines up and deploy the cluster
+-a, --air-gapped      Setup CaaSP nodes with substitute registries (for deployment and/or private image access)
 -i, --ignore-memory   Don't prompt when over allocating memory
 -t, --test            Do a dry run, don't actually deploy the vms
 -v, --verbose [uint8] Verbosity level to pass to skuba -v (default is 1)
@@ -35,6 +36,7 @@ function invalid_model {
 CAASP_CONFIG_MODEL="minimal"
 DO_MEMORY_CHECK=true
 FULL_DEPLOYMENT=false
+AIR_GAPPED=false
 DO_DRY_RUN=false
 PARAMS=""
 while (( "$#" )); do
@@ -49,6 +51,10 @@ while (( "$#" )); do
       ;;
     -f|--full)
       FULL_DEPLOYMENT=true
+      shift
+      ;;
+    -a|--air-gapped)
+      AIR_GAPPED=true
       shift
       ;;
     -i|--ignore-memory)
@@ -132,6 +138,22 @@ total_mem="$(($MASTERMEM*$NMASTERS + $WORKERMEM*$NWORKERS + $LBMEM*$NLOADBAL + $
 echo "TOTALS CPU=$total_cpus MEM=$total_mem"
 echo ""
 
+if [[ $AIR_GAPPED == true ]]; then
+	# Check for required air-gapped config files
+	FILE=./air-gap.d/air-gapped-registries.conf
+    	if [[ -f "$FILE" ]]; then
+		echo "Custom Air-gapped Registries configuration found!!"
+		echo "Configuring nodes for air-gap after VMs are up."
+	else
+		echo "Air-gap command-line option specified but missing required configuration file(s)."
+		echo "See ./air-gap.d/README.md for information."
+		echo "Exiting"
+		exit 1
+	fi
+else
+    echo "Default registry location : ensure access to registry.suse.com for installation images"
+fi 
+
 if [ "$FULL_DEPLOYMENT" == true ]; then
     echo "Do full deployment after VMs are up."
 else
@@ -170,6 +192,21 @@ for s in $(seq ${NSTORAGE})
 do
     vagrant up caasp4-storage-${s}
 done
+
+if [[ $AIR_GAPPED == true ]]; then
+	echo "Preparing Air-Gapped Setup..."
+	echo "Modifying Masters..."
+	for m in $(seq ${NMASTERS})
+	do
+		vagrant ssh caasp4-master-${m} -c 'sudo /vagrant/deploy/100.prep_airgap.sh'
+	done
+	echo "Modifying Workers..."
+	for w in $(seq ${NWORKERS})
+	do
+		vagrant ssh caasp4-worker-${w} -c 'sudo /vagrant/deploy/100.prep_airgap.sh'
+	done
+	echo "Finished Air-Gapped Setup."
+fi
 
 if [[ $FULL_DEPLOYMENT == true ]]; then
     vagrant ssh caasp4-master-1 -c 'sudo su - sles -c /vagrant/deploy/99.run-all.sh'

@@ -79,7 +79,8 @@ The `deploy_caasp.sh` must be run as either `root` or `sles` user.
 ```sh
 # Initial deployment
 cd vagrant-caasp
-./deploy_caasp.sh -m <model> < --full >
+./deploy_caasp.sh -m <model> < --full > < -a >
+# -a will deploy air-gap/registry mirror settings prior to SUSE CaaSP cluster deployment
 # --full will attempt to bring the machines up and deploy the cluster.
 # Please adjust your memory settings in the config.yml for each machine type.
 # Do not run vagrant up, unless you know what you're doing and want the result
@@ -87,9 +88,10 @@ Usage deploy_caasp.sh [options..]
 -m, --model <model>   Which config.yml model to use for vm sizing
                       Default: "minimal"
 -f, --full            attempt to bring the machines up and deploy the cluster
+-a, --air-gapped      Setup CaaSP nodes with substitute registries (for deployment and/or private image access)
 -i, --ignore-memory   Don't prompt when over allocating memory
--v, --verbose [uint8] Debug level to pass to skuba
 -t, --test            Do a dry run, don't actually deploy the vms
+-v, --verbose [uint8] Verbosity level to pass to skuba -v (default is 1)
 -h,-?, --help         Show help
 ```
 

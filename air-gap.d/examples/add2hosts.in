@@ -1,0 +1,5 @@
+# air-gapped registry running on :
+10.0.0.1 your-registry.your-domain.com
+# official SUSE image registry :
+#52.58.141.149   registry.suse.com
+
