@@ -152,6 +152,12 @@ cd /vagrant/deploy
 /vagrant/rook/switch_default_sc_to_ses.sh
 # To see status:
 /vagrant/rook/rook_status.sh
+
+# To use CephFS you must create pools and a filesystem associated.
+# To quickly set it up for use and testing you can execute this script
+/vagrant/rook/rook_cephfs_setup.sh
+
+# Example cephfs app at /vagrant/rook/examples/test-cephfs-webserver.yaml
 ```
 # OPENSTACK
 (details to be documented)
