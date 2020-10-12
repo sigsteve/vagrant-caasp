@@ -27,7 +27,7 @@ Vagrant.configure("2") do |config|
 
     1.upto(*mastercount) do |i|
         config.vm.define "caasp4-master-#{i}" do |sle|
-            sle.vm.box = "sle15sp1"
+            sle.vm.box = "vagrant-caasp"
             sle.vm.hostname = "caasp4-master-#{i}.#{domain}"
             sle.vm.provision "shell", inline: "hostnamectl set-hostname #{sle.vm.hostname}"
             #sle.vm.provision "shell", inline: "kubeadm config images pull"
@@ -51,7 +51,7 @@ Vagrant.configure("2") do |config|
 
     1.upto(*workercount) do |i|
         config.vm.define "caasp4-worker-#{i}" do |sle|
-            sle.vm.box = "sle15sp1"
+            sle.vm.box = "vagrant-caasp"
             sle.vm.hostname = "caasp4-worker-#{i}.#{domain}"
             sle.vm.provision "shell", inline: "hostnamectl set-hostname #{sle.vm.hostname}"
             sle.vm.provision "shell", inline: "/vagrant/boxfiles/prep_box.sh"
@@ -74,7 +74,7 @@ Vagrant.configure("2") do |config|
 
     1.upto(*lbcount) do |i|
         config.vm.define "caasp4-lb-#{i}" do |sle|
-            sle.vm.box = "sle15sp1"
+            sle.vm.box = "vagrant-caasp"
             sle.vm.hostname = "caasp4-lb-#{i}.#{domain}"
             sle.vm.provision "shell", inline: "hostnamectl set-hostname #{sle.vm.hostname}"
             sle.vm.provision "shell", inline: "/vagrant/boxfiles/prep_box.sh"
@@ -96,7 +96,7 @@ Vagrant.configure("2") do |config|
 
     1.upto(*storagecount) do |i|
         config.vm.define "caasp4-storage-#{i}" do |sle|
-            sle.vm.box = "sle15sp1"
+            sle.vm.box = "vagrant-caasp"
             sle.vm.hostname = "caasp4-storage-#{i}.#{domain}"
             sle.vm.provision "shell", inline: "hostnamectl set-hostname #{sle.vm.hostname}"
             sle.vm.provision "shell", inline: "/vagrant/boxfiles/prep_box.sh"
