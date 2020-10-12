@@ -1,5 +1,5 @@
 # vagrant-caasp -- BETA
-An automated deployment of SUSE CaaS Platform (Kubernetes) v4.1 for testing.
+An automated deployment of SUSE CaaS Platform (Kubernetes) v4.5 for testing.
 
 This project is a work in progress and will be cleaned up after some testing and feedback.
 Feel free to open issues and/or submit PRs.
@@ -44,10 +44,10 @@ virsh net-create ./libvirt_setup/vagrant-libvirt.xml
 # ADD BOX (As root)
 ```sh
 # Find the latest box at http://download.suse.de/ibs/home:/sbecht:/vc-test:/SLE-15-SP1/images/
-vagrant box add sle15sp1 \
+vagrant box add vagrant-caasp \
     http://download.suse.de/ibs/home:/sbecht:/vc-test:/SLE-15-SP1/images/<box>
 # _OR_
-# wget/curl the box and 'vagrant box add sle15sp1 </path/to/box>'
+# wget/curl the box and 'vagrant box add vagrant-caasp </path/to/box>'
 ```
 
 # OPTIONAL -- running as a user other than root
