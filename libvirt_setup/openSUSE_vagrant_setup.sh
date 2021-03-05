@@ -1,23 +1,7 @@
-# Taken from: github.com/openSUSE/vagrant-ceph
+# Taken from: https://github.com/SUSE/sesdev#install-vagrant
 
-set -ex
-
-zypper in -y --allow-unsigned-rpm https://releases.hashicorp.com/vagrant/2.2.5/vagrant_2.2.5_x86_64.rpm
-
-# workaround for https://github.com/hashicorp/vagrant/issues/10019
-mv /opt/vagrant/embedded/lib/libreadline.so.7{,.disabled} | true
-    
-zypper in -y ruby-devel
-zypper in -y gcc gcc-c++ make
-zypper in -y qemu-kvm libvirt-daemon-qemu libvirt libvirt-devel
-
-#need for vagrant-libvirt
-gem install ffi
-gem install unf_ext
-gem install ruby-libvirt
-
-systemctl enable libvirtd
-systemctl start libvirtd
-
-vagrant plugin install vagrant-libvirt
-
+$ sudo zypper ar https://download.opensuse.org/repositories/Virtualization:/vagrant/<repo> vagrant_repo
+$ sudo zypper ar https://download.opensuse.org/repositories/Virtualization:/containers/<repo> containers_repo
+$ sudo zypper ref
+$ sudo zypper -n install vagrant vagrant-libvirt
+Where <repo> can be openSUSE_Leap_15.1 or openSUSE_Tumbleweed
